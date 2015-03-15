@@ -1,0 +1,1 @@
+from soldier import Soldier
