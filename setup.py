@@ -1,9 +1,8 @@
-
 from distutils.core import setup
 
 setup(
     name='soldier',
-    version='0.0.1.2',
+    version='0.0.1.3',
     author='Yash Mehrotra',
     author_email='yashmehrotra95@gmail.com',
     packages=['soldier'],
@@ -11,6 +10,6 @@ setup(
     url='https://pypi.python.org/pypi/soldier',
     license='LICENSE',
     description='Subprocess with all guns blazing',
-    long_description='To be Added',
+    long_description=open('README.txt').read(),
     install_requires=[],
 )
