@@ -50,7 +50,7 @@ class Soldier(object):
             output = check_output(
                         self.subcomm,
                         stderr=STDOUT,
-                        shell=True
+                        #shell=True
                     )
         
             # The user just wants the ouptput
@@ -60,11 +60,13 @@ class Soldier(object):
             # Output spilt through a delimiter
             elif split and delimiter:
                 output = output.split(delimiter)
+                output = filter(None,output)
                 return output
 
             # Output split through the default delimiter '\n'
             elif split and not delimiter:
                 output = output.split('\n') # The Default
+                output = filter(None,output)
                 return output
             else:
                 print 'Impossible to reach here, if u just gave the delimiter without split u have reached here, I think only delimiter should be given'
@@ -81,10 +83,6 @@ if __name__== "__main__":
     command = str(raw_input())
     sub = Soldier(command)
     print sub.output()
-    print 'vlc time'
-    x = Soldier('vlc',background=True)
-    print 'Lets see'
-    print x.returncode
 
 
 # TO - DO
@@ -95,6 +93,8 @@ if __name__== "__main__":
 # 5. travis.yml
 # 6. implement in cyberoam rescue
 # 7. cyberoam rescue as a shell command, where it automatically asks to input user, pass etc.'
+# 8. grep not working, or any another pipe command
+# 9. head,cat also not working
 
 # TO - READ
 # 1. http://pymotw.com/2/subprocess/
