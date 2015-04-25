@@ -1,4 +1,6 @@
 # import should be done in alphabetic order
+# Cause PEP-8 \m/
+from datetime import time
 from subprocess import (
         CalledProcessError,
         PIPE,
@@ -8,6 +10,7 @@ from subprocess import (
     )
 import sys
 import shlex
+
 """
 try:
     retcode = call("mycmd" + " myarg", shell=True)
@@ -20,15 +23,21 @@ except OSError as e:
 """
 
 class Soldier(object):
-    def __init__(self, command, background=False):
+    def __init__(self, command):
+        
         self.command = command
         self.subcomm = shlex.split(command)
-        # print self.subcomm
-        # When you just need to run a background command (open something or copy something etc.
-        if background:
+        
+        # Properties
+        self._pid = None
+        self._pstart_ts = None
+        self._pend_ts = None
+        self._status_code = None
+        # When you just need to run a background command (open something or copy something etc.)
+        if False:
             self.process =  Popen(self.subcomm, shell=True)
         # For everything else
-        else:
+        elif False:
             try:
                 self.process = Popen(self.subcomm,
                                      stdin=PIPE,
@@ -36,6 +45,7 @@ class Soldier(object):
                                      stderr=PIPE,
                                      shell=True,
                                 )
+
                 (self.out,self.error) = self.process.communicate()
 
             except Exception as e:
@@ -76,8 +86,37 @@ class Soldier(object):
 
 
     def call(self):
-        # so far pass as it is done by init
+        # it should return a whole lot of stuff
+        process = Popen(self.subcomm, shell=True)
+        self._pid = process.pid
+        return process
+
+
+    @staticmethod
+    def processes(pid=None):
+        # Return a readable list or tuple, if pid give do something more
         pass
+
+
+    @property
+    def pid(self):
+        '''
+        Return pid
+        '''
+        return self._pid
+
+
+    @property
+    def status_code(self):
+        '''
+        Return status code
+        '''
+
+        return self._status_code
+
+    
+
+    
 
 if __name__== "__main__":
     command = str(raw_input())
@@ -93,7 +132,7 @@ if __name__== "__main__":
 # 5. travis.yml
 # 6. implement in cyberoam rescue
 # 7. cyberoam rescue as a shell command, where it automatically asks to input user, pass etc.'
-# 8. grep not working, or any another pipe command
+# 8. grep not working, or any another pipe command .... soldier('history|grep ssh')
 # 9. head,cat also not working
 
 # TO - READ
