@@ -1,0 +1,7 @@
+1 soldier.run(comm)
+  - pid
+  - start_ts
+  - end_ts
+  - status code
+  - background
+  - pipe 
