@@ -8,8 +8,8 @@ setup(
     packages=['soldier'],
     scripts=[],
     url='https://pypi.python.org/pypi/soldier',
-    license='LICENSE',
+    license='Apache 2.0',
     description='Subprocess with all guns blazing',
     long_description=open('README.txt').read(),
-    install_requires=[],
+    install_requires=['psutil==3.2.1'],
 )
