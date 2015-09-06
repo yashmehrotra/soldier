@@ -6,3 +6,5 @@
   - background
   - pipe
   - kill
+  - timeout
+  - stdin for user
