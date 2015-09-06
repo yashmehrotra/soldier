@@ -1,1 +1,1 @@
-from soldier import Soldier
+from restart import Soldier as s, run
