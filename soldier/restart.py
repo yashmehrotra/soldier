@@ -1,4 +1,5 @@
 # A New Beginning
+from datetime import datetime
 import psutil
 from subprocess import (
     CalledProcessError,
@@ -74,14 +75,26 @@ class Soldier(object):
         # Remember about background
         # You have to handle errors gracefully
         print 'Run called'
+        self._start_ts = datetime.now()
         p = Popen(self._parsed_command, shell=True, stdout=PIPE, stderr=PIPE)
         self._pid = p.pid
         self._process = p
         if not self._background:
-            output, err = p.communicate()
-            self._output = output
-            self._status_code = p.returncode
-        return 'h'
+            self._set_output_and_status_code()
+            return 'h'
+
+    def _set_output_and_status_code(self):
+        """
+        Sets output prop and status code
+        """
+
+        output, err = self._process.communicate()
+        if err:
+            # Do something
+            pass
+
+        self._output = output
+        self._status_code = self._process.returncode
 
     @property
     def pid(self):
@@ -99,6 +112,7 @@ class Soldier(object):
         # Kill the fucking process
         # self._process.kill()
         kill_family(self._pid)
+        self._set_output_and_status_code()
         return 'Killed'
 
     @property
