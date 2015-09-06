@@ -1,5 +1,5 @@
 # A New Beginning
-
+import psutil
 from subprocess import (
     CalledProcessError,
     PIPE,
@@ -11,6 +11,17 @@ from subprocess import (
 
 import sys
 import shlex
+
+
+def kill_family(pid):
+    """
+    Kills the children and the parents
+    """
+
+    process = psutil.Process(pid)
+    for child in process.children():
+        child.kill()
+    process.kill()
 
 
 def run(command, **kwargs):
@@ -38,11 +49,13 @@ class Soldier(object):
         self._parsed_command = shlex.split(command)
         self._status_code = None
         self._background = kwargs.get('background', False)
+        self._process = None
         self._pid = None
         self._output = None
         self._std_err = None
         self._start_ts = None
         self._end_ts = None
+        self._in_shell = True
 
         # Call run
         self.run()
@@ -63,6 +76,7 @@ class Soldier(object):
         print 'Run called'
         p = Popen(self._parsed_command, shell=True, stdout=PIPE, stderr=PIPE)
         self._pid = p.pid
+        self._process = p
         if not self._background:
             output, err = p.communicate()
             self._output = output
@@ -83,6 +97,8 @@ class Soldier(object):
 
     def kill(self):
         # Kill the fucking process
+        # self._process.kill()
+        kill_family(self._pid)
         return 'Killed'
 
     @property
