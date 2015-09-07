@@ -59,12 +59,12 @@ class Soldier(object):
         self._in_shell = True
 
         # Call run
-        self.run()
+        self._run()
 
     def __repr__(self):
         return "<Soldier [{0}]>".format(self._command)
 
-    def run(self):
+    def _run(self):
         """
         Run handler
         """
@@ -81,7 +81,6 @@ class Soldier(object):
         self._process = p
         if not self._background:
             self._set_output_and_status_code()
-            return 'h'
 
     def _set_output_and_status_code(self):
         """
@@ -95,6 +94,7 @@ class Soldier(object):
 
         self._output = output
         self._status_code = self._process.returncode
+        self._end_ts = datetime.now()
 
     @property
     def pid(self):
