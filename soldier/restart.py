@@ -80,9 +80,9 @@ class Soldier(object):
         self._pid = p.pid
         self._process = p
         if not self._background:
-            self._set_output_and_status_code()
+            self._set_communication_params()
 
-    def _set_output_and_status_code(self):
+    def _set_communication_params(self):
         """
         Sets output prop and status code
         """
@@ -96,6 +96,12 @@ class Soldier(object):
         self._status_code = self._process.returncode
         self._end_ts = datetime.now()
 
+    def kill(self):
+        # Kill the fucking process
+        # self._process.kill()
+        kill_family(self._pid)
+        self._set_communication_params()
+
     @property
     def pid(self):
         return self._pid
@@ -107,13 +113,6 @@ class Soldier(object):
     @property
     def output(self):
         return self._output
-
-    def kill(self):
-        # Kill the fucking process
-        # self._process.kill()
-        kill_family(self._pid)
-        self._set_output_and_status_code()
-        return 'Killed'
 
     @property
     def start_ts(self):

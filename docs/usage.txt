@@ -8,3 +8,4 @@
   - kill
   - timeout
   - stdin for user
+  - shell = True/False from user
