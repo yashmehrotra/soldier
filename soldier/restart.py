@@ -57,6 +57,7 @@ class Soldier(object):
         self._start_ts = None
         self._end_ts = None
         self._in_shell = True
+        self._is_active = False
 
         # Call run
         self._run()
@@ -76,9 +77,10 @@ class Soldier(object):
         # You have to handle errors gracefully
         print 'Run called'
         self._start_ts = datetime.now()
-        p = Popen(self._parsed_command, shell=True, stdout=PIPE, stderr=PIPE)
+        p = Popen(self._parsed_command, shell=False, stdout=PIPE, stderr=PIPE)
         self._pid = p.pid
         self._process = p
+        self._is_active = True
         if not self._background:
             self._set_communication_params()
 
@@ -95,6 +97,7 @@ class Soldier(object):
         self._output = output
         self._status_code = self._process.returncode
         self._end_ts = datetime.now()
+        self._is_active = False
 
     def kill(self):
         # Kill the fucking process
@@ -121,3 +124,7 @@ class Soldier(object):
     @property
     def end_ts(self):
         return self._end_ts
+
+    @property
+    def is_active(self):
+        return self._is_active
