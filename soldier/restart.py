@@ -102,7 +102,8 @@ class Soldier(object):
             if not self._background:
                 self._set_communication_params()
 
-        self._finish()
+        if not self._background:
+            self._finish()
 
     def _set_communication_params(self):
         """

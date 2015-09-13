@@ -17,4 +17,4 @@ __version__ = ''
 __author__ = 'Yash Mehrotra'
 __license__ = 'Apache 2.0'
 
-from restart import Soldier as s, run
+from restart import run
