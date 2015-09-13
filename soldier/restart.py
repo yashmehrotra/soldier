@@ -1,29 +1,32 @@
 # A New Beginning
 from datetime import datetime
+import os
 import psutil
+import shlex
+import signal
+
 from subprocess import (
     CalledProcessError,
     PIPE,
     Popen,
     STDOUT,
     call,
-    check_output
 )
 
 import sys
-import shlex
 
 
 def kill_family(pid):
     """
     Kills the children and the parents
     """
-
+    os.kill(pid, signal.SIGTERM)
+    """
     process = psutil.Process(pid)
     for child in process.children():
         child.kill()
     process.kill()
-
+    """
 
 def run(command, **kwargs):
     """
@@ -47,7 +50,6 @@ class Soldier(object):
         """
 
         self._command = command
-        self._parsed_command = shlex.split(command)
         self._status_code = None
         self._background = kwargs.get('background', False)
         self._process = None
@@ -56,14 +58,24 @@ class Soldier(object):
         self._std_err = None
         self._start_ts = None
         self._end_ts = None
-        self._in_shell = True
+        self._in_shell = False
         self._is_active = False
 
+        self._parse()
         # Call run
         self._run()
 
     def __repr__(self):
         return "<Soldier [{0}]>".format(self._command)
+
+    def _parse(self):
+        """
+        Parse the command
+        """
+
+        command = self._command
+        command = command.split('|')
+        self._parsed_command = map(shlex.split, command)
 
     def _run(self):
         """
@@ -77,25 +89,39 @@ class Soldier(object):
         # You have to handle errors gracefully
         print 'Run called'
         self._start_ts = datetime.now()
-        p = Popen(self._parsed_command, shell=False, stdout=PIPE, stderr=PIPE)
-        self._pid = p.pid
-        self._process = p
-        self._is_active = True
-        if not self._background:
-            self._set_communication_params()
+        for comm in self._parsed_command:
+
+            self._process = Popen(comm,
+                                  shell=self._in_shell,
+                                  stdin=PIPE,
+                                  stdout=PIPE,
+                                  stderr=PIPE)
+            self._pid = self._process.pid
+            self._is_active = True
+
+            if not self._background:
+                self._set_communication_params()
+
+        self._finish()
 
     def _set_communication_params(self):
         """
         Sets output prop and status code
         """
 
-        output, err = self._process.communicate()
-        if err:
+        self._output, self._err = self._process.communicate(self._output)
+        if self._err:
             # Do something
+            print 'Err ' + self._err
             pass
 
-        self._output = output
         self._status_code = self._process.returncode
+
+    def _finish(self):
+        """
+        End a command
+        """
+
         self._end_ts = datetime.now()
         self._is_active = False
 
