@@ -1,4 +1,3 @@
-# A New Beginning
 from datetime import datetime
 import os
 import psutil
@@ -89,6 +88,7 @@ class Soldier(object):
         # You have to handle errors gracefully
         print 'Run called'
         self._start_ts = datetime.now()
+        wait = True if self._background else False
         for comm in self._parsed_command:
 
             self._process = Popen(comm,
@@ -99,16 +99,18 @@ class Soldier(object):
             self._pid = self._process.pid
             self._is_active = True
 
-            if not self._background:
-                self._set_communication_params()
+            self._set_communication_params(wait=wait)
 
         if not self._background:
             self._finish()
 
-    def _set_communication_params(self):
+    def _set_communication_params(self, wait=False):
         """
         Sets output prop and status code
+        if wait true, backgr process
         """
+        if wait:
+            return
 
         self._output, self._err = self._process.communicate(self._output)
         if self._err:
@@ -155,3 +157,6 @@ class Soldier(object):
     @property
     def is_active(self):
         return self._is_active
+
+# TODO - Timeout
+# TODO - stdin from user
