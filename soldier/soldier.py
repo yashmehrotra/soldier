@@ -50,7 +50,7 @@ class Soldier(object):
 
         self._command = command
         self._status_code = None
-        self._background = kwargs.get('background', False)
+        self._background = bool(kwargs.get('background', False))
         self._process = None
         self._pid = None
         self._output = None
@@ -59,6 +59,7 @@ class Soldier(object):
         self._end_ts = None
         self._in_shell = False
         self._is_active = False
+        self._std_in = False
 
         self._parse()
         # Call run
@@ -82,9 +83,6 @@ class Soldier(object):
         """
 
         # Things to do-
-        # Start the timer
-        # Remember about PID
-        # Remember about background
         # You have to handle errors gracefully
         print 'Run called'
         self._start_ts = datetime.now()
@@ -112,6 +110,7 @@ class Soldier(object):
         if wait:
             return
 
+        self._output = self._std_in if self._std_in else None
         self._output, self._err = self._process.communicate(self._output)
         if self._err:
             # Do something
@@ -158,5 +157,13 @@ class Soldier(object):
     def is_active(self):
         return self._is_active
 
+    @property
+    def duration(self):
+        try:
+            duration = self.end_ts - self.start_ts
+        except:
+            duration = None
+
+        return duration
+
 # TODO - Timeout
-# TODO - stdin from user
