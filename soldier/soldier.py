@@ -59,7 +59,8 @@ class Soldier(object):
         self._end_ts = None
         self._in_shell = False
         self._is_active = False
-        self._std_in = False
+        self._std_in = kwargs.get('stdin', False)
+        self._err = None
 
         self._parse()
         # Call run
@@ -84,7 +85,6 @@ class Soldier(object):
 
         # Things to do-
         # You have to handle errors gracefully
-        print 'Run called'
         self._start_ts = datetime.now()
         wait = True if self._background else False
         for comm in self._parsed_command:
@@ -128,10 +128,13 @@ class Soldier(object):
         self._is_active = False
 
     def kill(self):
-        # Kill the fucking process
-        # self._process.kill()
+        """
+        Kill the current process
+        """
+
         kill_family(self._pid)
         self._set_communication_params()
+        self._finish()
 
     @property
     def pid(self):
@@ -144,6 +147,10 @@ class Soldier(object):
     @property
     def output(self):
         return self._output
+
+    @property
+    def error(self):
+        return self._err
 
     @property
     def start_ts(self):
@@ -161,7 +168,7 @@ class Soldier(object):
     def duration(self):
         try:
             duration = self.end_ts - self.start_ts
-        except:
+        except TypeError:
             duration = None
 
         return duration
