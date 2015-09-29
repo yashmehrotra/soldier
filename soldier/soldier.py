@@ -13,6 +13,9 @@ from subprocess import (
 )
 
 import sys
+import warnings
+
+from .exceptions import ProcessDoesNotExistError
 
 
 def kill_family(pid):
@@ -111,10 +114,10 @@ class Soldier(object):
             return
 
         self._output = self._std_in if self._std_in else None
+
         self._output, self._err = self._process.communicate(self._output)
         if self._err:
-            # Do something
-            print 'Err ' + self._err
+            warnings.warn(self._err, RuntimeWarning)
             pass
 
         self._status_code = self._process.returncode
@@ -132,9 +135,13 @@ class Soldier(object):
         Kill the current process
         """
 
-        kill_family(self._pid)
-        self._set_communication_params()
-        self._finish()
+        if self._is_active:
+            kill_family(self._pid)
+            self._set_communication_params()
+            self._finish()
+        else:
+            raise ProcessDoesNotExistError(
+                    'The process you are trying to kill does not exist')
 
     @property
     def pid(self):
@@ -174,3 +181,4 @@ class Soldier(object):
         return duration
 
 # TODO - Timeout
+# TODO - Best way to kill a process
