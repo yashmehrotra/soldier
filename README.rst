@@ -13,11 +13,13 @@ And the best part - it is very easy to get started
 Installation 
 ------------
 .. code-block:: sh
+
     $ pip install soldier
 
 Getting Started
 ---------------
 .. code-block:: python
+
     >>> import soldier
 
     >>> print soldier.run('pwd').output
@@ -29,3 +31,7 @@ Getting Started
 
     >>> job = soldier.run('myjob',timeout=30)
 
+Documenation
+------------
+
+The documentation is available at <link>
