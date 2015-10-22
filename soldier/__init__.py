@@ -17,7 +17,7 @@ user-friendly and pythonic interface.
 """
 
 __title__ = 'soldier'
-__version__ = ''
+__version__ = '0.0.2'
 __author__ = 'Yash Mehrotra'
 __license__ = 'Apache 2.0'
 

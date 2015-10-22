@@ -1,7 +1,7 @@
 Soldier: Subprocess with Style
 ==============================
 
-.. image:: https://img.shields.io/badge/license-APACHE2-blue.svg
+.. image:: https://img.shields.io/badge/license-APACHE2-blue.svg?style=flat-square
     :target: https://github.com/yashmehrotra/soldier/blob/master/LICENSE
 
 Soldier is an Apache2 licensed library designed for executing system processes with ease.

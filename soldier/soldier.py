@@ -58,7 +58,8 @@ class Soldier(object):
 
         self._parse()
         self._validate()
-        # Call run
+
+        # The main process handler
         self._run()
 
     def __repr__(self):
