@@ -9,7 +9,11 @@
 ███████║╚██████╔╝███████╗██████╔╝██║███████╗██║  ██║
 ╚══════╝ ╚═════╝ ╚══════╝╚═════╝ ╚═╝╚══════╝╚═╝  ╚═╝
 
-Soldier description here
+
+Soldier is an Apache2 licensed library designed for executing system
+processes with ease. It is written on top of subprocess and has a much
+user-friendly and pythonic interface.
+
 """
 
 __title__ = 'soldier'
