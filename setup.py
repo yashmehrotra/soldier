@@ -5,7 +5,7 @@ except ImportError:
 
 setup(
     name='soldier',
-    version='0.0.1.4',
+    version='0.0.1.5',
     author='Yash Mehrotra',
     author_email='yashmehrotra95@gmail.com',
     packages=['soldier'],
@@ -14,5 +14,5 @@ setup(
     license='Apache 2.0',
     description='Subprocess with all guns blazing',
     long_description=open('README.txt').read(),
-    install_requires=['psutil==3.2.1'],
+    install_requires=[],
 )

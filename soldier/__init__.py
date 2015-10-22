@@ -18,3 +18,5 @@ __author__ = 'Yash Mehrotra'
 __license__ = 'Apache 2.0'
 
 from soldier import run
+
+__all__ = ['run']
