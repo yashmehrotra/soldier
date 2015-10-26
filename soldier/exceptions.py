@@ -5,6 +5,13 @@ class SoldierError(OSError):
     pass
 
 
+class InvalidCommandError(SoldierError):
+    """
+    Raised when an invalid command is encountered
+    """
+    pass
+
+
 class ProcessDoesNotExistError(SoldierError):
     """
     Raised when trying to kill an inactive process

@@ -11,6 +11,7 @@ from subprocess import (
 import warnings
 
 from .exceptions import (
+    InvalidCommandError,
     ProcessDoesNotExistError,
     TimeoutError
 )
@@ -111,11 +112,16 @@ class Soldier(object):
 
         for comm in self._parsed_command:
 
-            self._process = Popen(comm,
-                                  shell=self._in_shell,
-                                  stdin=PIPE,
-                                  stdout=PIPE,
-                                  stderr=PIPE)
+            try:
+                self._process = Popen(comm,
+                                      shell=self._in_shell,
+                                      stdin=PIPE,
+                                      stdout=PIPE,
+                                      stderr=PIPE)
+            except OSError:
+                raise InvalidCommandError(
+                    'please check the command you are trying to execute')
+
             self._pid = self._process.pid
 
             self._set_communication_params(wait=wait)
