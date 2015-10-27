@@ -52,7 +52,8 @@ class Soldier(object):
         self._end_ts = None
         self._in_shell = False
         self._is_alive = False
-        self._std_in = kwargs.get('stdin', False)
+        self._std_in = kwargs.get('std_in', False)
+        self._output = kwargs.get('std_in', None)
         self._err = None
         self._timeout = kwargs.get('timeout')
         self._kill_on_timeout = kwargs.get('kill_on_timeout')
@@ -140,9 +141,8 @@ class Soldier(object):
         if wait:
             return
 
-        self._output = self._std_in if self._std_in else None
-
         self._output, self._err = self._process.communicate(self._output)
+
         if self._err:
             warnings.warn(self._err, RuntimeWarning)
             pass
