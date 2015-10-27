@@ -34,4 +34,4 @@ Getting Started
 Documenation
 ------------
 
-The documentation is available at <link>
+The documentation is available at http://soldier.readthedocs.org/
