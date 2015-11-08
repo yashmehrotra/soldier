@@ -13,7 +13,7 @@ class TestBasicCommands:
 
     def test_mkdir(self):
         soldier.run('mkdir {}'.format(self.testdir))
-        assert os.path.exists(os.getcwd() + '/' + self.testdir) == True
+        assert os.path.exists(os.getcwd() + '/' + self.testdir)
 
     def test_rmdir(self):
         soldier.run('rmdir {}'.format(self.testdir))

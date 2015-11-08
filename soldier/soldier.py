@@ -53,7 +53,9 @@ class Soldier(object):
         self._in_shell = False
         self._is_alive = False
         self._std_in = kwargs.get('std_in', False)
-        self._output = kwargs.get('std_in', None)
+        self._output = kwargs.get('std_in', None)  # Hack, think of better way
+        self._sudo = bool(kwargs.get('sudo'))
+        self._password = kwargs.get('sudo') + '\n'
         self._err = None
         self._timeout = kwargs.get('timeout')
         self._kill_on_timeout = kwargs.get('kill_on_timeout')
@@ -140,6 +142,10 @@ class Soldier(object):
         """
         if wait:
             return
+
+        if self._sudo:
+            self._output = self._password
+            self._sudo = False
 
         self._output, self._err = self._process.communicate(self._output)
 
