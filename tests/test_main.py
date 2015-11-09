@@ -15,6 +15,11 @@ class TestBasicCommands:
         soldier.run('mkdir {}'.format(self.testdir))
         assert os.path.exists(os.getcwd() + '/' + self.testdir)
 
+    def test_pipe(self):
+        ls_output = soldier.run('ls | grep {}'.format(self.testdir)).\
+                        output.strip()
+        assert ls_output == self.testdir
+
     def test_rmdir(self):
         soldier.run('rmdir {}'.format(self.testdir))
         assert os.path.exists(os.getcwd() + '/' + self.testdir) == False

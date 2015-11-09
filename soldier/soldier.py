@@ -55,7 +55,7 @@ class Soldier(object):
         self._std_in = kwargs.get('std_in', False)
         self._output = kwargs.get('std_in', None)  # Hack, think of better way
         self._sudo = bool(kwargs.get('sudo'))
-        self._password = kwargs.get('sudo') + '\n'
+        self._password = kwargs.get('sudo','') + '\n'
         self._err = None
         self._timeout = kwargs.get('timeout')
         self._kill_on_timeout = kwargs.get('kill_on_timeout')
