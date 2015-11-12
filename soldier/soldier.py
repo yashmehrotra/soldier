@@ -50,7 +50,7 @@ class Soldier(object):
         self._std_err = None
         self._start_ts = None
         self._end_ts = None
-        self._in_shell = False
+        self._in_shell = kwargs.get('shell', False)
         self._is_alive = False
         self._std_in = kwargs.get('std_in', False)
         self._output = kwargs.get('std_in', None)  # Hack, think of better way
@@ -90,6 +90,11 @@ class Soldier(object):
             if self._kill_on_timeout is not True:
                 raise ValueError(
                     'kill_on_timeout must be boolean')
+
+        if self._in_shell:
+            if self._in_shell is not True:
+                raise ValueError(
+                    'shell argument must be boolean')
 
     def _parse(self):
         """
