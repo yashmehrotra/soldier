@@ -148,6 +148,8 @@ class Soldier(object):
         if wait:
             return
 
+        # TODO: std_in does not work with sudo
+        #       Figure out a way to accommodate it
         if self._sudo:
             self._output = self._password
             self._sudo = False
