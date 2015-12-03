@@ -120,12 +120,15 @@ class Soldier(object):
 
         for comm in self._parsed_command:
 
+            if self._sudo:
+                comm = ['sudo', '-S'] + comm
             try:
                 self._process = Popen(comm,
                                       shell=self._in_shell,
                                       stdin=PIPE,
                                       stdout=PIPE,
-                                      stderr=PIPE)
+                                      stderr=PIPE,
+                                      universal_newlines=True)
             except OSError:
                 raise InvalidCommandError(
                     'please check the command you are trying to execute')
