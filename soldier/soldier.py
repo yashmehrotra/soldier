@@ -223,6 +223,9 @@ class Soldier(object):
         return self._end_ts
 
     def is_alive(self):
+        if self._background:
+            return psutil.pid_exists(self._pid)
+
         return self._is_alive
 
     @property
