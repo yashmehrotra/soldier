@@ -38,7 +38,7 @@ Getting Started
     >>> firefox_process.pid
     20749
 
-    >>> job = soldier.run('myjob',timeout=30)
+    >>> job = soldier.run('myjob', timeout=30)
 
 Documenation
 ------------

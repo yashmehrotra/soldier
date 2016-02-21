@@ -22,4 +22,4 @@ class TestBasicCommands:
 
     def test_rmdir(self):
         soldier.run('rmdir {}'.format(self.testdir))
-        assert os.path.exists(os.getcwd() + '/' + self.testdir) == False
+        assert not os.path.exists(os.getcwd() + '/' + self.testdir)

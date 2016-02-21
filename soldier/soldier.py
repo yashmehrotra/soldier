@@ -1,8 +1,6 @@
 from datetime import datetime
-import os
 import shlex
 import signal
-import psutil
 
 from subprocess import (
     PIPE,
@@ -11,18 +9,16 @@ from subprocess import (
 
 import warnings
 
+from .helpers import (
+    kill_family,
+    pid_exists
+)
+
 from .exceptions import (
     InvalidCommandError,
     ProcessDoesNotExistError,
     TimeoutError
 )
-
-
-def kill_family(pid):
-    """
-    Kills the children and the parents
-    """
-    os.kill(pid, signal.SIGTERM)
 
 
 def run(command, **kwargs):
@@ -56,10 +52,10 @@ class Soldier(object):
         self._std_in = kwargs.get('std_in', False)
         self._output = kwargs.get('std_in', None)  # Hack, think of better way
         self._sudo = bool(kwargs.get('sudo'))
-        self._password = kwargs.get('sudo','') + '\n'
+        self._password = kwargs.get('sudo', '') + '\n'
         self._err = None
         self._timeout = kwargs.get('timeout')
-        self._kill_on_timeout = kwargs.get('kill_on_timeout')
+        self._kill_on_timeout = kwargs.get('kill_on_timeout', False)
 
         self._parse()
         self._validate()
@@ -72,30 +68,24 @@ class Soldier(object):
 
     def _validate(self):
         """
-        Validate kwargs
+        Validate key worded arguments
         """
 
-        if self._background:
-            if self._background is not True:
-                raise ValueError(
-                    'background argument must be boolean')
+        if type(self._background) is not bool:
+            raise ValueError(
+                'background argument must be boolean')
 
-        if self._timeout:
-            try:
-                self._timeout = int(self._timeout)
-            except ValueError:
-                raise ValueError(
-                    'timeout argument must be integer')
+        if self._timeout and type(self._timeout) is not int:
+            raise ValueError(
+                'timeout argument must be integer')
 
-        if self._kill_on_timeout:
-            if self._kill_on_timeout is not True:
-                raise ValueError(
-                    'kill_on_timeout must be boolean')
+        if type(self._kill_on_timeout) is not bool:
+            raise ValueError(
+                'kill_on_timeout must be boolean')
 
-        if self._in_shell:
-            if self._in_shell is not True:
-                raise ValueError(
-                    'shell argument must be boolean')
+        if type(self._in_shell) is not bool:
+            raise ValueError(
+                'shell argument must be boolean')
 
     def _parse(self):
         """
@@ -225,7 +215,7 @@ class Soldier(object):
 
     def is_alive(self):
         if self._background:
-            return psutil.pid_exists(self._pid)
+            return pid_exists(self._pid)
 
         return self._is_alive
 
