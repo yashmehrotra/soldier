@@ -2,6 +2,7 @@ from datetime import datetime
 import os
 import shlex
 import signal
+import psutil
 
 from subprocess import (
     PIPE,
