@@ -1,5 +1,7 @@
 Soldier: Subprocess with Style
 ==============================
+.. image:: https://travis-ci.org/yashmehrotra/soldier.svg?branch=master
+    :target: https://travis-ci.org/yashmehrotra/soldier
 
 .. image:: https://img.shields.io/badge/license-APACHE2-blue.svg?style=flat-square
     :target: https://github.com/yashmehrotra/soldier/blob/master/LICENSE
