@@ -11,7 +11,7 @@ Soldier: Subprocess with Style
     :alt: Documentation Status
 
 |
-.. image:: https://github.com/yashmehrotra/soldier/blob/master/images/flint.jpg
+.. image:: https://raw.githubusercontent.com/yashmehrotra/soldier/master/images/flint.jpg
 
 Soldier is an Apache2 licensed library designed for executing system processes with ease.
 
