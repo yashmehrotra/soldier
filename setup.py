@@ -14,5 +14,5 @@ setup(
     license='Apache 2.0',
     description='Subprocess with Style',
     long_description=open('README.rst').read(),
-    install_requires=['psutil'],
+    install_requires=[],
 )
