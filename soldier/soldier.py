@@ -54,7 +54,7 @@ class Soldier(object):
         self._sudo = bool(kwargs.get('sudo'))
         self._password = kwargs.get('sudo', '') + '\n'
         self._err = None
-        self._timeout = kwargs.get('timeout')
+        self._timeout = kwargs.get('timeout', 0)
         self._kill_on_timeout = kwargs.get('kill_on_timeout', False)
 
         self._parse()
@@ -75,7 +75,7 @@ class Soldier(object):
             raise ValueError(
                 'background argument must be boolean')
 
-        if self._timeout and type(self._timeout) is not int:
+        if type(self._timeout) is not int:
             raise ValueError(
                 'timeout argument must be integer')
 
