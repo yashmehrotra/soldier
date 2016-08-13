@@ -14,7 +14,8 @@ Contents:
    overview.rst
    installation.rst
    usage.rst
-   api.rst
+   api_documentation.rst
+   examples.rst
 
 Indices and tables
 ==================
