@@ -5,8 +5,7 @@ Usage
 
 After successfully installing soldier, you will now be able to communicate with system processes without making your eyes bleed.
 
-Get output of pwd command
--------------------------
+**Get output of pwd command**
 
 .. code-block:: python
 
@@ -18,8 +17,7 @@ Get output of pwd command
     >> print(current_path.status_code)
     0
 
-Run a process in background, and later terminate it
----------------------------------------------------
+**Run a process in background, and later terminate it**
 
 .. code-block:: python
 
@@ -32,13 +30,13 @@ Run a process in background, and later terminate it
     >> firefox_proc.is_alive()
     >> False
 
-Run a root command
+**Run a root command**
 
 .. code-block:: python
 
     >> soldier.run('service nginx start', sudo='my_password')
 
-Run a command with timeout
+**Run a command with timeout**
 
 .. code-block:: python
 
