@@ -28,4 +28,5 @@ from .exceptions import (
     ProcessTimeoutError
 )
 
-__all__ = ['run']
+__all__ = ['run', 'InvalidCommandError',
+           'ProcessDoesNotExistError', 'ProcessTimeoutError']
