@@ -6,6 +6,7 @@ Usage
 After successfully installing soldier, you will now be able to communicate with system processes without making your eyes bleed.
 
 Get output of pwd command
+-------------------------
 
 .. code-block:: python
 
@@ -18,6 +19,7 @@ Get output of pwd command
     0
 
 Run a process in background, and later terminate it
+---------------------------------------------------
 
 .. code-block:: python
 
