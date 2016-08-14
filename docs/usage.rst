@@ -5,11 +5,11 @@ Usage
 
 After successfully installing soldier, you will now be able to communicate with system processes without making your eyes bleed.
 
+Get output of pwd command
+
 .. code-block:: python
 
     >> import soldier
-
-    # Get output of pwd command
     >> current_path = soldier.run('pwd')
     >> print(current_path.output)
     /home/pythonista
@@ -17,7 +17,10 @@ After successfully installing soldier, you will now be able to communicate with 
     >> print(current_path.status_code)
     0
 
-    # Run a process in background
+Run a process in background, and later terminate it
+
+.. code-block:: python
+
     >> firefox_proc = soldier.run('firefox', background=True)
     # Get pid of firefox process
     >> print(firefox_proc.pid)
@@ -27,10 +30,16 @@ After successfully installing soldier, you will now be able to communicate with 
     >> firefox_proc.is_alive()
     >> False
 
-    # Run a root command
+Run a root command
+
+.. code-block:: python
+
     >> soldier.run('service nginx start', sudo='my_password')
 
-    # Run a command with timeout
+Run a command with timeout
+
+.. code-block:: python
+
     >> soldier.run('./infinite_loop_script.py', timeout=10, kill_on_timeout=True)
 
     # Handle timeouts
