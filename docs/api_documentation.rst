@@ -25,23 +25,23 @@ API Documentation
 
     The class object which is returned with the *soldier.run()* method.
 
-    **methods**
+    **Methods**
 
-.. function:: kill()
+    .. function:: kill()
 
-    This function is used to kill the current process
+        This function is used to kill the current process
 
-    :rtype: None
-
-
-.. function:: is_alive()
-
-    This function checks whether process is active or not
-
-    :rtype: A *boolean*
+        :rtype: *None*
 
 
-    **properties**
+    .. function:: is_alive()
+
+        This function checks whether process is active or not
+
+        :rtype: *boolean*
+
+
+    **Properties**
 
     - pid - Returns the pid of the process
     - status_code - Returns the status code of the process
@@ -49,5 +49,5 @@ API Documentation
     - error - Returns the stderr (standard error) of the process
     - start_ts - Returns the start time (:class:`datetime.datetime` object) of the process
     - end_ts - Returns the end time (:class:`datetime.datetime` object) of the process
-    - duration - Returns the total duration(:class:`datetime.timedelta object) of the process
+    - duration - Returns the total duration(:class:`datetime.timedelta` object) of the process
  
