@@ -1,8 +1,7 @@
 API Documentation
 =================
 
-*soldier.run(command, **kwargs)*
-""""""""""""""""""""""""""""""""
+.. function:: soldier.run(command, **kwargs)
 
 The main run command
 
@@ -17,10 +16,11 @@ The main run command
 
 **returns**: A *soldier.Soldier* object
 
-*class soldier.Soldier*
-"""""""""""""""""""""
+.. function:: soldier.run(command, **kwargs)
 
-The class which is returned by soldier.run
+.. class:: soldier.run(command, **kwargs)
+
+The class object which is returned with the *soldier.run()* method.
 
 **properties**:
 
