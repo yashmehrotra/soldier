@@ -19,7 +19,7 @@ class ProcessDoesNotExistError(SoldierError):
     pass
 
 
-class TimeoutError(SoldierError):
+class ProcessTimeoutError(SoldierError):
     """
     Raised when a process takes longer to finish than required
     """

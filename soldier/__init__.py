@@ -22,5 +22,10 @@ __author__ = 'Yash Mehrotra'
 __license__ = 'Apache 2.0'
 
 from .soldier import run
+from .exceptions import (
+    InvalidCommandError,
+    ProcessDoesNotExistError,
+    ProcessTimeoutError
+)
 
 __all__ = ['run']

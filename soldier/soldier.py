@@ -17,7 +17,7 @@ from .helpers import (
 from .exceptions import (
     InvalidCommandError,
     ProcessDoesNotExistError,
-    TimeoutError
+    ProcessTimeoutError
 )
 
 
@@ -186,7 +186,7 @@ class Soldier(object):
         if self._kill_on_timeout:
             self.kill(with_honor=False)
 
-        raise TimeoutError(
+        raise ProcessTimeoutError(
             'The process could not be completed in the specified timeframe')
 
     @property

@@ -1,7 +1,7 @@
-How to use
-==========
+Usage
+=====
 
-Philosophy: The reason for creating soldier was mainly to provide a user-friendly and pythonic API to the subprocess module.
+**Philosophy**: The reason for creating soldier is to provide a user-friendly and pythonic API on top the subprocess module in order to manage system processes in python.
 
 After successfully installing soldier, you will now be able to communicate with system processes without making your eyes bleed.
 
@@ -36,6 +36,6 @@ After successfully installing soldier, you will now be able to communicate with 
     # Handle timeouts
     >> try
            soldier.run('./my_script.py', timeout=5, kill_on_timeout=False)
-       except soldier.TimeoutError:
+       except soldier.ProcessTimeoutError:
            print("Your script timed out")
     Your script timed out
