@@ -11,19 +11,19 @@ API Documentation
     :type std_in: string
     :param sudo: If you want to execute the command as root, this argument should be your password
     :type sudo: string
-    :param timeout: The timeout for the process in seconds
+    :param timeout: The timeout for the process in seconds(default: 0, ie. No timeout)
     :type timeout: int
-    :param kill_on_timeout:
+    :param kill_on_timeout: If set to true, your process will killed when the time is up, and if it is False, it will throw a `soldier.ProcessTimeoutError` (default: False)
     :type kill_on_timeout: bool
-    :param shell: Set this to true if you
+    :param shell: Set this to true if you want to execute the process in TODO`
     :type shell: bool
-    :rtype: A *soldier.Soldier* object
+    :rtype: A `soldier.Soldier` object
 
 
 
 .. class:: soldier.Soldier
 
-    The class object which is returned with the *soldier.run()* method.
+    The class object which is returned with the `soldier.run()` method.
 
     **Methods**
 
