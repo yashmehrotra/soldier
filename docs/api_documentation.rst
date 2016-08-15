@@ -1,21 +1,21 @@
 API Documentation
 =================
 
-.. function:: soldier.run(command, **kwargs)
+.. function:: soldier.run(command, background=False, std_id='', sudo=None, timeout=0, kill_on_timeout=False, shell=False)
 
     The main run command which executes the system process
 
-    :param background: Set this true if you want to run the command asynchronously (default: False)
+    :param background: Set this true if you want to run the command asynchronously
     :type background: bool
     :param std_in: The standard input to be given to the process
     :type std_in: string
     :param sudo: If you want to execute the command as root, this argument should be your password
     :type sudo: string
-    :param timeout: The timeout for the process in seconds(default: 0, ie. No timeout)
+    :param timeout: The timeout for the process in seconds
     :type timeout: int
-    :param kill_on_timeout: If set to true, your process will killed when the time is up, and if it is False, it will throw a `soldier.ProcessTimeoutError` (default: False)
+    :param kill_on_timeout: If set to true, your process will killed when the time is up, and if it is False, it will throw a ``soldier.ProcessTimeoutErrora``
     :type kill_on_timeout: bool
-    :param shell: Set this to true if you want to execute the process in TODO
+    :param shell: Set this to true if you want to execute the process in the /bin/sh environment
     :type shell: bool
     :rtype: A :class:`soldier.Soldier` object
 
