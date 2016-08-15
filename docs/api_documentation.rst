@@ -15,15 +15,18 @@ API Documentation
     :type timeout: int
     :param kill_on_timeout: If set to true, your process will killed when the time is up, and if it is False, it will throw a `soldier.ProcessTimeoutError` (default: False)
     :type kill_on_timeout: bool
-    :param shell: Set this to true if you want to execute the process in TODO`
+    :param shell: Set this to true if you want to execute the process in TODO
     :type shell: bool
-    :rtype: A `soldier.Soldier` object
+    :rtype: A :class:`soldier.Soldier` object
 
+.. warning::
+
+    Passing ``shell=True`` can be a security hazard if combined with untrusted input.
 
 
 .. class:: soldier.Soldier
 
-    The class object which is returned with the `soldier.run()` method.
+    The class object which is returned with the :func:`soldier.run()` method.
 
     **Methods**
 
