@@ -13,11 +13,12 @@ API Documentation
     :type sudo: string
     :param timeout: The timeout for the process in seconds
     :type timeout: int
-    :param kill_on_timeout: If set to true, your process will killed when the time is up, and if it is False, it will throw a ``soldier.ProcessTimeoutErrora``
+    :param kill_on_timeout: If set to true, your process will killed when the time is up, and if it is False, it will throw a ``soldier.ProcessTimeoutError``
     :type kill_on_timeout: bool
     :param shell: Set this to true if you want to execute the process in the /bin/sh environment
     :type shell: bool
-    :rtype: A :class:`soldier.Soldier` object
+    :returns: A :class:`soldier.Soldier` object
+    :rtype: :class:`soldier.Soldier`
 
 .. warning::
 
@@ -34,14 +35,15 @@ API Documentation
 
         This function is used to kill the current process
 
-        :rtype: *None*
+        :rtype: ``None``
 
 
     .. function:: is_alive()
 
         This function checks whether process is active or not
 
-        :rtype: *boolean*
+        :returns: A ``bool`` specifying whether the process is running or not
+        :rtype: ``bool``
 
 
     **Properties**
