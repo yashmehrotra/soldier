@@ -152,7 +152,6 @@ class Soldier(object):
 
         if self._err:
             warnings.warn(self._err, RuntimeWarning)
-            pass
 
         self._status_code = self._process.returncode
 
@@ -171,10 +170,10 @@ class Soldier(object):
 
         if self._is_alive:
             kill_family(self._pid)
+            self._finish()
 
             if with_honor:
                 self._set_communication_params()
-                self._finish()
         else:
             raise ProcessDoesNotExistError(
                 'The process you are trying to kill does not exist')
