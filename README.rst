@@ -40,7 +40,7 @@ Getting Started
 
     >>> job = soldier.run('myjob', timeout=30)
 
-Documenation
+Documentation
 ------------
 
 The documentation is available at `soldier.readthedocs.io <http://soldier.readthedocs.io/>`_
