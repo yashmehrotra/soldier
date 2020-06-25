@@ -15,7 +15,7 @@ Soldier: Subprocess with Style
 
 Soldier is an Apache2 licensed library designed for executing and managing system processes with ease.
 
-It is written on top of subprocess and has a much user-friendly and pythonic interface.
+It is written on top of subprocess and has a much user-friendly and pythonic interface
 
 And the best part - it is very easy to get started
 
