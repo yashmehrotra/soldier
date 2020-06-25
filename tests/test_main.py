@@ -20,6 +20,10 @@ class TestBasicCommands:
                         output.strip()
         assert ls_output == self.testdir
 
+    def test_cwd(self):
+        output = soldier.run('ls | grep {}'.format(self.testdir), cwd=self.testdir).\
+                output.strip()
+
     def test_rmdir(self):
         soldier.run('rmdir {}'.format(self.testdir))
         assert not os.path.exists(os.getcwd() + '/' + self.testdir)

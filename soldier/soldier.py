@@ -1,3 +1,4 @@
+import sys
 from datetime import datetime
 import shlex
 import signal
@@ -49,6 +50,8 @@ class Soldier(object):
         self._end_ts = None
         self._in_shell = kwargs.get('shell', False)
         self._is_alive = False
+        self._cwd = kwargs.get('cwd', None)
+        self._stream = kwargs.get('stream', False)
         self._std_in = kwargs.get('std_in', False)
         self._output = kwargs.get('std_in', None)  # Hack, think of better way
         self._sudo = bool(kwargs.get('sudo'))
@@ -116,6 +119,7 @@ class Soldier(object):
             try:
                 self._process = Popen(comm,
                                       shell=self._in_shell,
+                                      cwd=self._cwd,
                                       stdin=PIPE,
                                       stdout=PIPE,
                                       stderr=PIPE,
@@ -148,8 +152,16 @@ class Soldier(object):
             self._output = self._password
             self._sudo = False
 
-        self._output, self._err = self._process.communicate(self._output)
+        if self._stream:
+            output = ''
+            for line in iter(self._process.stdout.readline, ''):
+                sys.stdout.write(line)
+                output += line
+            self._output = output
+        else:
+            self._output, self._err = self._process.communicate(self._output)
 
+        # This even comes as an output for stderr
         if self._err:
             warnings.warn(self._err, RuntimeWarning)
 
