@@ -11,6 +11,10 @@ API Documentation
     :type std_in: string
     :param sudo: If you want to execute the command as root, this argument should be your password
     :type sudo: string
+    :param cwd: Working directory of the command being executed
+    :type cwd: string
+    :param stream: When set to true, the output of your command will be streamed. (It does not work with piped commands)
+    :type stream: bool
     :param timeout: The timeout for the process in seconds
     :type timeout: int
     :param kill_on_timeout: If set to true, your process will killed when the time is up, and if it is False, it will throw a ``soldier.ProcessTimeoutError``
