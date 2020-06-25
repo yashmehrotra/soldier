@@ -12,5 +12,6 @@ setup(
     url='https://pypi.python.org/pypi/soldier',
     license='Apache 2.0',
     description='Subprocess with Style',
-    long_description=open('README.rst').read(),
+    long_description=open('README.md').read(),
+    long_description_content_type="text/markdown",
 )
