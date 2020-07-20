@@ -40,7 +40,7 @@ class Soldier(object):
         """
 
         self._command = command
-        self._status_code = None
+        self._exit_code = None
         self._background = kwargs.get('background', False)
         self._process = None
         self._pid = None
@@ -60,6 +60,7 @@ class Soldier(object):
         self._err = None
         self._timeout = kwargs.get('timeout', 0)
         self._kill_on_timeout = kwargs.get('kill_on_timeout', False)
+        self._suppress_std_err = kwargs.get('suppress_std_err', False)
 
         self._parse()
         self._validate()
@@ -164,10 +165,10 @@ class Soldier(object):
             self._output, self._err = self._process.communicate(self._output)
 
         # This even comes as an output for stderr
-        if self._err:
-            warnings.warn(self._err, RuntimeWarning)
+        if self._err and not self._suppress_std_err:
+            print(self._err)
 
-        self._status_code = self._process.returncode
+        self._exit_code = self._process.returncode
 
     def _finish(self):
         """
@@ -208,7 +209,11 @@ class Soldier(object):
 
     @property
     def status_code(self):
-        return self._status_code
+        return self._exit_code
+
+    @property
+    def exit_code(self):
+        return self._exit_code
 
     @property
     def output(self):
