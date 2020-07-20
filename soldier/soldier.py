@@ -60,6 +60,7 @@ class Soldier(object):
         self._err = None
         self._timeout = kwargs.get('timeout', 0)
         self._kill_on_timeout = kwargs.get('kill_on_timeout', False)
+        self._suppress_std_err = kwargs.get('suppress_std_err', False)
 
         self._parse()
         self._validate()
@@ -164,8 +165,8 @@ class Soldier(object):
             self._output, self._err = self._process.communicate(self._output)
 
         # This even comes as an output for stderr
-        if self._err:
-            warnings.warn(self._err, RuntimeWarning)
+        if self._err and not self._suppress_std_err:
+            print(self._err)
 
         self._exit_code = self._process.returncode
 

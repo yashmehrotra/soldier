@@ -1,7 +1,7 @@
 API Documentation
 =================
 
-.. function:: soldier.run(command, background=False, std_id='', sudo=None, timeout=0, kill_on_timeout=False, shell=False)
+.. function:: soldier.run(command, background=False, std_id='', sudo=None, timeout=0, kill_on_timeout=False, stream=False, suppress_std_err=False, shell=False)
 
     The main run command which executes the system process
 
@@ -17,6 +17,8 @@ API Documentation
     :type env: dict(str, str)
     :param stream: When set to true, the output of your command will be streamed. (It does not work with piped commands)
     :type stream: bool
+    :param suppress_std_err: When set to true, the output from stderr would not be printed.
+    :type suppress_std_err: bool
     :param timeout: The timeout for the process in seconds
     :type timeout: int
     :param kill_on_timeout: If set to true, your process will killed when the time is up, and if it is False, it will throw a ``soldier.ProcessTimeoutError``

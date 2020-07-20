@@ -1,6 +1,7 @@
 ## v0.2.2
 
 - `exit_code` is now a property, `status_code` is still supported but will be deprecated
+- `suppress_std_err` keyworded argument is added to prevent from always printing stderr
 
 ## v0.2.1
 
