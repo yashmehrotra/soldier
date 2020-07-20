@@ -14,7 +14,7 @@ After successfully installing soldier, you will now be able to communicate with 
     >> print(current_path.output)
     /home/pythonista
     # Status Code
-    >> print(current_path.status_code)
+    >> print(current_path.exit_code)
     0
 
 **Run a process in background, and later terminate it**

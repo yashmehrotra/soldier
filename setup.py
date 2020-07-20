@@ -5,7 +5,7 @@ except ImportError:
 
 setup(
     name='soldier',
-    version='0.2.1',
+    version='0.2.2',
     author='Yash Mehrotra',
     author_email='yashmehrotra95@gmail.com',
     packages=['soldier'],

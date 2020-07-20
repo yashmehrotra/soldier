@@ -55,7 +55,8 @@ API Documentation
     **Properties**
 
     - pid - Returns the pid of the process
-    - status_code - Returns the status code of the process
+    - exit_code - Returns the exit code of the process
+    - status_code - Returns the exit code of the process (To be deprecated, prefer exit_code)
     - output - Returns the stdout (standard output) of the process
     - error - Returns the stderr (standard error) of the process
     - start_ts - Returns the start time (:class:`datetime.datetime` object) of the process

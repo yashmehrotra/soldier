@@ -40,7 +40,7 @@ class Soldier(object):
         """
 
         self._command = command
-        self._status_code = None
+        self._exit_code = None
         self._background = kwargs.get('background', False)
         self._process = None
         self._pid = None
@@ -167,7 +167,7 @@ class Soldier(object):
         if self._err:
             warnings.warn(self._err, RuntimeWarning)
 
-        self._status_code = self._process.returncode
+        self._exit_code = self._process.returncode
 
     def _finish(self):
         """
@@ -208,7 +208,11 @@ class Soldier(object):
 
     @property
     def status_code(self):
-        return self._status_code
+        return self._exit_code
+
+    @property
+    def exit_code(self):
+        return self._exit_code
 
     @property
     def output(self):

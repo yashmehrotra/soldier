@@ -1,3 +1,7 @@
+## v0.2.2
+
+- `exit_code` is now a property, `status_code` is still supported but will be deprecated
+
 ## v0.2.1
 
 - Custom enviroment variables can be passed to commands
