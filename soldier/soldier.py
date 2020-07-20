@@ -51,6 +51,7 @@ class Soldier(object):
         self._in_shell = kwargs.get('shell', False)
         self._is_alive = False
         self._cwd = kwargs.get('cwd', None)
+        self._env = kwargs.get('env', None)
         self._stream = kwargs.get('stream', False)
         self._std_in = kwargs.get('std_in', False)
         self._output = kwargs.get('std_in', None)  # Hack, think of better way
@@ -120,6 +121,7 @@ class Soldier(object):
                 self._process = Popen(comm,
                                       shell=self._in_shell,
                                       cwd=self._cwd,
+                                      env=self._env,
                                       stdin=PIPE,
                                       stdout=PIPE,
                                       stderr=PIPE,

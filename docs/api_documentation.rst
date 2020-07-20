@@ -13,6 +13,8 @@ API Documentation
     :type sudo: string
     :param cwd: Working directory of the command being executed
     :type cwd: string
+    :param env: Environment variables that would be available when the command is being executed
+    :type env: dict(str, str)
     :param stream: When set to true, the output of your command will be streamed. (It does not work with piped commands)
     :type stream: bool
     :param timeout: The timeout for the process in seconds
