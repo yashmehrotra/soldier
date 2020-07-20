@@ -24,6 +24,14 @@ class TestBasicCommands:
         output = soldier.run('ls | grep {}'.format(self.testdir), cwd=self.testdir).\
                 output.strip()
 
+        assert output == ''
+
+    def test_cwd(self):
+        output = soldier.run('printenv', env={'TEST_VAR': 'VALUE'}).\
+                output.strip()
+
+        assert output == 'TEST_VAR=VALUE'
+
     def test_rmdir(self):
         soldier.run('rmdir {}'.format(self.testdir))
         assert not os.path.exists(os.getcwd() + '/' + self.testdir)
