@@ -161,6 +161,7 @@ class Soldier(object):
                 sys.stdout.write(line)
                 output += line
             self._output = output
+            self._err = self._process.stderr.read()
         else:
             self._output, self._err = self._process.communicate(self._output)
 
@@ -168,6 +169,7 @@ class Soldier(object):
         if self._err and not self._suppress_std_err:
             print(self._err)
 
+        self._process.poll()
         self._exit_code = self._process.returncode
 
     def _finish(self):
