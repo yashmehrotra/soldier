@@ -25,4 +25,9 @@ class TestStreamingCommand:
 
         s = soldier.run('ls')
         command_output = s.output.strip().split('\n')
+
         assert stream_output == command_output
+
+    def test_stream_exit_code(self):
+        s = soldier.run('echo hello > /dev/null', stream=True)
+        assert s.exit_code == 0

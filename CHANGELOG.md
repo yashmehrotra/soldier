@@ -1,3 +1,6 @@
+## v0.2.3
+- Bugfix: `exit_code` was not being set when using `stream=True`. This was fixed by calling `Popen.poll()`
+
 ## v0.2.2
 
 - `exit_code` is now a property, `status_code` is still supported but will be deprecated
