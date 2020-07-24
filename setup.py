@@ -3,9 +3,18 @@ try:
 except ImportError:
     from distutils.core import setup
 
+version = None
+with open('soldier/__init__.py', 'r') as f:
+    for line in f.readlines():
+        if '__version__' in line:
+            version = line.split('=')[1].replace('\'', '').strip()
+
+if not version:
+    raise Exception("Error fetching version from soldier/__init__.py")
+
 setup(
     name='soldier',
-    version='0.2.3',
+    version='0.2.4',
     author='Yash Mehrotra',
     author_email='yashmehrotra95@gmail.com',
     packages=['soldier'],
