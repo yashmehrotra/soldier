@@ -162,9 +162,9 @@ class Soldier(object):
                 output += line
 
             # Calling it to make sure process is finished
-            self._process.communicate(self._output)
             self._output = output
             self._err = self._process.stderr.read()
+            self._process.communicate(self._output)
         else:
             self._output, self._err = self._process.communicate(self._output)
 
