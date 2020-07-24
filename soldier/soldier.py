@@ -160,6 +160,9 @@ class Soldier(object):
             for line in iter(self._process.stdout.readline, ''):
                 sys.stdout.write(line)
                 output += line
+
+            # Calling it to make sure process is finished
+            self._process.communicate(self._output)
             self._output = output
             self._err = self._process.stderr.read()
         else:
