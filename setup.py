@@ -14,7 +14,7 @@ if not version:
 
 setup(
     name='soldier',
-    version='0.2.4',
+    version=version,
     author='Yash Mehrotra',
     author_email='yashmehrotra95@gmail.com',
     packages=['soldier'],

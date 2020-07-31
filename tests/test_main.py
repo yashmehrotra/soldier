@@ -32,6 +32,14 @@ class TestBasicCommands:
 
         assert output == 'TEST_VAR=VALUE'
 
+    def test_stdout_override(self):
+        new_file = open(self.testdir + '/my_file', 'w')
+        soldier.run('echo hello', std_out=new_file.fileno())
+        new_file.close()
+
+        with open(self.testdir + '/my_file', 'r') as f:
+            assert f.read().strip() == 'hello'
+
     def test_rmdir(self):
-        soldier.run('rmdir {}'.format(self.testdir))
+        soldier.run('rm -rf {}'.format(self.testdir))
         assert not os.path.exists(os.getcwd() + '/' + self.testdir)

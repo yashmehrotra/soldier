@@ -25,6 +25,8 @@ API Documentation
     :type kill_on_timeout: bool
     :param shell: Set this to true if you want to execute the process in the /bin/sh environment
     :type shell: bool
+    :param std_out: If given a file descriptor (positive integer), will redirect output to that file (Note: Pipe commands main not work as expected)
+    :type std_out: int
     :returns: A :class:`soldier.Soldier` object
     :rtype: :class:`soldier.Soldier`
 
