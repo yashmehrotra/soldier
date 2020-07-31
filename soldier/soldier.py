@@ -61,6 +61,7 @@ class Soldier(object):
         self._timeout = kwargs.get('timeout', 0)
         self._kill_on_timeout = kwargs.get('kill_on_timeout', False)
         self._suppress_std_err = kwargs.get('suppress_std_err', False)
+        self._std_out_dest = kwargs.get('std_out', PIPE)
 
         self._parse()
         self._validate()
@@ -99,7 +100,9 @@ class Soldier(object):
 
         command = self._command
         command = command.split('|')
-        self._parsed_command = map(shlex.split, command)
+        self._parsed_command = [command]
+        if not self._in_shell:
+            self._parsed_command = map(shlex.split, command)
 
     def _run(self):
         """
@@ -124,7 +127,7 @@ class Soldier(object):
                                       cwd=self._cwd,
                                       env=self._env,
                                       stdin=PIPE,
-                                      stdout=PIPE,
+                                      stdout=self._std_out_dest,
                                       stderr=PIPE,
                                       universal_newlines=True)
             except OSError:

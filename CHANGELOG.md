@@ -1,3 +1,7 @@
+## v0.2.5
+- Add support to overwrite `std_out` using fd. Can be used like `soldier.run(cmd, std_out=1)` to write output to fd 1 (/dev/stdout) in this case.
+- Bugfix: When using `shell=True` do not split the command using `shlex`
+
 ## v0.2.4
 - Bugfix: Call `Popen.communicate` when `stream=True` to set `exit_code` explicitly in case process is still in running state
 
